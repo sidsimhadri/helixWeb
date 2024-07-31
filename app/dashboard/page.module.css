@@ -44,7 +44,7 @@
 
 .header {
   padding-top: 1.8rem;
-  padding-left: 0rem;
+  padding-left: .5rem;
   margin-left: auto;
   width: 100%;
   justify-content: flex-end;
@@ -53,6 +53,7 @@
   top: 0px;
   left: 0;
   right: 0;
+
 }
 
 
@@ -67,6 +68,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
   font-weight: bold;
+  margin-left: 1rem;
 }
 
 .button:hover {

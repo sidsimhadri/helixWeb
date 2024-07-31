@@ -32,11 +32,11 @@ export default function Home() {
     const router = useRouter();
 
     if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+    if (error) return <p>Error: Failed to fetch questions. Please try again later.</p>;
   
-  function handleAskQuestion() {
-    router.push("/asking");
-  }
+    function handleAskQuestion() {
+      router.push("/asking");
+    }
 
     return (
       <div className={styles.flexContainer}>
@@ -45,7 +45,7 @@ export default function Home() {
               Ask a question
             </button>
         </div>
-        {data &&
+        {data && data.questions && data.questions.length > 0 ? (
           data.questions.map((question: Question) => (
             <div key={question.id} className={styles.question}>
               <h3>{question.title}</h3>
@@ -61,8 +61,10 @@ export default function Home() {
                 <p>Pseudo near expert</p>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <p>No questions available. Be the first to ask!</p>
+        )}
       </div>
     );
 }
-

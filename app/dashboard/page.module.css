@@ -1,0 +1,74 @@
+.flexContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 1rem;
+}
+
+.question {
+  width: 70%;
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 1rem;
+  border-radius: 25px; /* Rounded corners */
+  background: #fff; /* Background color */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.question img {
+  border-radius: 50%;
+}
+.question h3 {
+    margin-top: 0.5rem; 
+    margin-bottom: 0.5rem;
+}
+
+.question p {
+    margin-bottom: 0.5rem; 
+}
+
+.question h4 {
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+    font-size: 0.75rem;
+}
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #6074DD;
+  font-weight: 700;
+}
+
+.header {
+  padding-top: 1.8rem;
+  padding-left: 0rem;
+  margin-left: auto;
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  top: 0px;
+  left: 0;
+  right: 0;
+}
+
+
+
+.button {
+  margin-right: 4rem;
+  padding: 0.6rem;
+  border-radius: 25px;
+  border: none;
+  background-color: #6074dd;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #4559bb; /* Darker blue on hover */
+}

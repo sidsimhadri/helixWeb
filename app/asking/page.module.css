@@ -62,7 +62,6 @@
 .button {
   padding: 0.6rem;
   margin-right: .5rem;
-  mar-left: 1rem;
   border-radius: 25px; /* Rounded corners for the button */
   border: none; /* Remove border */
   background-color: #6074dd; /* Bootstrap primary blue */

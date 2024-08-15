@@ -1,0 +1,97 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./app/asking/page.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+.page_flexContainer__JaTYV {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.page_askHeading__vUlkb {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.page_iconContainer__Nnavb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6074dd;
+  font-weight: 700;
+}
+.page_icon__ipmx5 {
+  border-radius: 50%;
+}
+
+.page_header__Gvz_9 {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  padding: 1rem 90px;
+}
+.page_askContainer__m2DE8 {
+  text-align: left;
+  width: 100%;
+  max-width: 400px; /* Set a max-width for the form */
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 2rem; /* Add padding inside the container */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: add shadow for better visibility */
+  border-radius: 25px; /* Rounded corners */
+  background: #fff; /* Background color */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center;
+}
+
+.page_askForm__wNpVc {
+    text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.page_askForm__wNpVc input[type="text"],
+.page_askForm__wNpVc input[type="password"] {
+  margin-bottom: 1rem; /* Space between the inputs */
+  padding: 0.8rem; /* Padding inside the inputs */
+  border: 1px solid #ccc; /* Light grey border for the inputs */
+}
+
+.page_button__g0_HZ {
+  padding: 0.6rem;
+  margin-right: .5rem;
+
+  border-radius: 25px; /* Rounded corners for the button */
+  border: none; /* Remove border */
+  background-color: #6074dd; /* Bootstrap primary blue */
+  color: white;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  font-weight: bold;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 10px auto 0;
+}
+
+.page_button__g0_HZ:hover {
+  background-color: #4559bb; /* Darker blue on hover */
+}
+
+.page_textarea__Lhis0 {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  min-height: 100px;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.page_textarea__Lhis0:focus {
+
+  border-color: #ccc;
+  box-shadow: none;
+}

@@ -1,4 +1,4 @@
-// File: /Users/sid/Documents/gleenDemo/helix_web/app/layout.tsx
+// File: /Users/sid/Documents/gleenDemo/helixWeb-frontend/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

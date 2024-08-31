@@ -1,4 +1,4 @@
-// File: /Users/sid/Documents/gleenDemo/helix_web/app/dashboard/page.tsx
+// File: /Users/sid/Documents/gleenDemo/helixWeb-frontend/app/dashboard/page.tsx
 import * as entry from '../../../../app/dashboard/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

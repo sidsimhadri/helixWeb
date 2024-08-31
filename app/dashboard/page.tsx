@@ -1,70 +1,116 @@
 "use client";
-import styles from "./page.module.css"
-import { gql, useQuery } from "@apollo/client";
-import { useEffect } from "react";
-import Image from "next/image"; 
+import styles from "./page.module.css";
+import { useEffect, useState, useCallback } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-// Define the Question type
-interface Question {
-  id: string;
-  title: string;
-  text: string;
-}
-
-const GET_ALL_QUESTIONS = gql`
-  query GetAllQuestions {
-    questions {
-      id
-      title
-      text
-    }
-  }
-`;
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import { getQuestions, logoutUser } from "../../api/questionService";
+import { Question } from "../../types";
+import React from "react";
+import { upvoteQuestion, downvoteQuestion } from "../../api/questionService";
 
 export default function Home() {
-    const { loading, error, data, refetch } = useQuery(GET_ALL_QUESTIONS);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const router = useRouter();
 
-    useEffect(() => {
-      refetch();
-    }, [refetch]);
-
-    const router = useRouter();
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: Failed to fetch questions. Please try again later.</p>;
-  
-    function handleAskQuestion() {
-      router.push("/asking");
+  const handleUpvote = useCallback(async (id: number | undefined) => {
+    if (id === undefined) {
+      return;
     }
+    try {
+      await upvoteQuestion(id);
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((question) =>
+          question.id === id
+            ? { ...question, thumbs_up: question.thumbs_up + 1 }
+            : question
+        )
+      );
+    } catch (error) {
+      console.error("Error updating question:", error);
+    }
+  }, []);
+  
 
-    return (
-      <div className={styles.flexContainer}>
-          <div className={styles.header}>
-            <button className={styles.button} onClick={handleAskQuestion}>
-              Ask a question
-            </button>
-        </div>
-        {data && data.questions && data.questions.length > 0 ? (
-          data.questions.map((question: Question) => (
-            <div key={question.id} className={styles.question}>
-              <h3>{question.title}</h3>
-              <p>{question.text}</p>
-              <h4>Asked by:</h4>
-                <div className={styles.profileContainer}>
-                <Image
-                  src="/icon.png"
-                  alt="profile pic"
-                  width={50}
-                  height={50}
-                />
-                <p>Pseudo near expert</p>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No questions available. Be the first to ask!</p>
-        )}
+  const handleDownvote = useCallback(async (id: number | undefined) => {
+    if (id === undefined) {
+      return;
+    }
+    try {
+      await downvoteQuestion(id);
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((question) =>
+          question.id === id
+            ? { ...question, thumbs_down: question.thumbs_down + 1 }
+            : question
+        )
+      );
+    } catch (error) {
+      console.error("Error updating question:", error);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Fetch the questions when the component mounts
+    const fetchQuestions = async () => {
+      try {
+        const response = await getQuestions();
+        setQuestions(response.data); // Adjust depending on how the data is structured in the response
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+      }
+    };
+    fetchQuestions();
+  }, [handleUpvote, handleDownvote]);
+
+  function handleAskQuestion() {
+    router.push("/asking");
+  }
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      router.push("/"); // Redirect to login page after logout
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  return (
+    <div className={styles.flexContainer}>
+      <div className={styles.header}>
+        <button className={styles.button} onClick={handleLogout}>
+          Logout
+        </button>
       </div>
-    );
+      {questions.length > 0 ? (
+        questions.map((question) => (
+          <div key={question.id} className={styles.question}>
+            <h3>{question.title}</h3>
+            <p>{question.text}</p>
+            <h4>Asked by:</h4>
+            <div className={styles.profileContainer}>
+              <Image src="/icon.png" alt="profile pic" width={50} height={50} />
+              <p>{question.user.username}</p>
+              <FontAwesomeIcon
+                className={styles.vote}
+                onClick={() => handleUpvote(question.id)}
+                icon={faThumbsUp}
+              />
+              <p>{question.thumbs_up}</p>
+              <FontAwesomeIcon
+                className={styles.vote}
+                onClick={() => handleDownvote(question.id)}
+                icon={faThumbsDown}
+              />
+              <p>{question.thumbs_down}</p>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No questions available. Be the first to ask!</p>
+      )}
+    </div>
+  );
 }

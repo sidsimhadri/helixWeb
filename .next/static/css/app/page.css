@@ -48,3 +48,13 @@
   background-color: #4559bb; /* Darker blue on hover */
 }
 
+.page_buttonContainer__0INWU {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .1rem;
+    width: 100%;
+}
+.page_button__52WaL {
+    width: 60%;
+}

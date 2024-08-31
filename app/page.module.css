@@ -44,3 +44,14 @@
 .loginForm button:hover {
   background-color: #4559bb; /* Darker blue on hover */
 }
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .1rem;
+    width: 100%;
+}
+.button {
+    width: 60%;
+}
